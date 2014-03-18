@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -43,6 +49,33 @@
   <ItemGroup>
     <Compile Include="ContactService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contacts.Application\Contacts.Application.csproj">
+      <Project>{FA13C63F-0F09-43C7-8A6B-FED042959F88}</Project>
+      <Name>Contacts.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contacts.Domain\Contacts.Domain.csproj">
+      <Project>{F27FE046-F93F-4FEF-A05D-DACDC342821A}</Project>
+      <Name>Contacts.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contacts.Infrastructure.Crosscutting\Contacts.Infrastructure.Crosscutting.csproj">
+      <Project>{7C57E6A2-E994-4AB0-AF85-D3C51EE02BD9}</Project>
+      <Name>Contacts.Infrastructure.Crosscutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contacts.Infrastructure.Persistance\Contacts.Infrastructure.Persistance.csproj">
+      <Project>{0A2D44F2-BE43-4B50-B295-D5B5C080A35C}</Project>
+      <Name>Contacts.Infrastructure.Persistance</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
+      <Link>AutoMapper.Net4.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3FA692D7-062B-4BA3-B3C6-861AB3FFC32C}</ProjectGuid>
+    <ProjectGuid>{FA13C63F-0F09-43C7-8A6B-FED042959F88}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Contacts.Application</RootNamespace>
@@ -31,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +47,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContactsDTO.cs" />
+    <Compile Include="Aggregates\ContactDTO.cs" />
+    <Compile Include="Aggregates\EMailDTO.cs" />
+    <Compile Include="Aggregates\PhoneTypeDTO.cs" />
+    <Compile Include="Aggregates\TelephoneDTO.cs" />
+    <Compile Include="Profiles\Profiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ContactRepository.cs" />
+    <Compile Include="ValueObjects\CityDTO.cs" />
+    <Compile Include="ValueObjects\CountryDTO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contacts.Domain\Contacts.Domain.csproj">
+      <Project>{F27FE046-F93F-4FEF-A05D-DACDC342821A}</Project>
+      <Name>Contacts.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contacts.Infrastructure.Persistance\Contacts.Infrastructure.Persistance.csproj">
+      <Project>{0A2D44F2-BE43-4B50-B295-D5B5C080A35C}</Project>
+      <Name>Contacts.Infrastructure.Persistance</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
+      <Link>AutoMapper.Net4.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

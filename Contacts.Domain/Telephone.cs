@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace Contacts.Domain
 {
-    public class Telephone
+    [DataContract]
+    public class Telephone : BaseEntity<int>
     {
+        [DataMember]
         public string PhoneNumber { get; set; }
          
-        public PhoneType Type { get; set; }
+        [DataMember]
+        public int PhoneTypeId { get; set; }
     }
 }

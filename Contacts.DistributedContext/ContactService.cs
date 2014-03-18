@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
+using Contacts.Infrastructure.Persistance;
+using Contacts.Domain;
+using Contacts.Application.Aggregates;
+using Contacts.Application.Services;
 
 namespace Contacts.DistributedContext
 {
+    /// <summary>
+    /// Service for managing contacts.
+    /// No dto's are used instead all data is eagerly loaded into domain classes
+    /// </summary>
+    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single, 
+                     IncludeExceptionDetailInFaults=true)]
     public class ContactService : IContactService
     {
-        public void AddContact()
-        {
-            throw new NotImplementedException();
+        private IContactRepository contactRepository;
+
+        public ContactService(IContactRepository contactRepository)
+        {            
+            this.contactRepository = contactRepository;
         }
 
-        public void EditContact()
+        public ContactDTO AddContact(ContactDTO contact)
         {
-            throw new NotImplementedException();
+            return contactRepository.Save(contact);
         }
 
-        public void DeleteContact()
+        public ContactDTO EditContact(ContactDTO contact)
         {
-            throw new NotImplementedException();
+            return contactRepository.Save(contact);
+        }
+
+        public int DeleteContact(ContactDTO contact)
+        {
+            return contactRepository.Delete(contact);
         }
     }
 
@@ -28,12 +45,12 @@ namespace Contacts.DistributedContext
     public interface IContactService
     {
         [OperationContract]
-        void AddContact();
+        ContactDTO AddContact(ContactDTO contact);
 
         [OperationContract]
-        void EditContact();
+        ContactDTO EditContact(ContactDTO contact);
 
         [OperationContract]
-        void DeleteContact();
+        int DeleteContact(ContactDTO contact);
     }
 }

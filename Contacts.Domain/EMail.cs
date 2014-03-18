@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace Contacts.Domain
 {
-    public class EMail
+    [DataContract]
+    public class EMail : BaseEntity<int>
     {
+        [DataMember]
         public string Address { get; set; }
     }
 }

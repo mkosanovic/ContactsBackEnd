@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Contacts.Application.Aggregates" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Contacts.Application.Aggregates" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4444/Services?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Contacts.Application.ValueObjects" />
+  <xs:import schemaLocation="http://localhost:4444/Services?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Contacts.Domain" />
+  <xs:complexType name="ContactDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Contacts.Domain" base="q1:BaseEntityOfint">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Contacts.Application.ValueObjects" minOccurs="0" name="City" nillable="true" type="q2:CityDTO" />
+          <xs:element minOccurs="0" name="EMail" nillable="true" type="tns:EMailDTO" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Telephone" nillable="true" type="tns:TelephoneDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContactDTO" nillable="true" type="tns:ContactDTO" />
+  <xs:complexType name="EMailDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Contacts.Domain" base="q3:BaseEntityOfint">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMailDTO" nillable="true" type="tns:EMailDTO" />
+  <xs:complexType name="TelephoneDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Contacts.Domain" base="q4:BaseEntityOfint">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PhoneType" nillable="true" type="tns:PhoneTypeDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TelephoneDTO" nillable="true" type="tns:TelephoneDTO" />
+  <xs:complexType name="PhoneTypeDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Contacts.Domain" base="q5:BaseEntityOfint">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PhoneTypeDTO" nillable="true" type="tns:PhoneTypeDTO" />
+</xs:schema>

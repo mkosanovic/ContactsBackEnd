@@ -10,8 +10,13 @@ namespace Contacts.DistributedContext.Host
     {
         static void Main(string[] args)
         {
+            // this is actually installer :)
+            var container = Bootstrapper.Bootstrap();
+            
+            var contactService = container.Resolve<IContactService>();
+
             // host wcf service
-            using(ServiceHost host = new ServiceHost(typeof(ContactService)))
+            using(ServiceHost host = new ServiceHost(contactService))
             {
                 host.Open();
 

@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Contacts.Domain;
 
 namespace Contacts.Infrastructure.Persistance
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : BaseEntity<int>
     {
-        IList<T> Get<T>();
+        IList<T> GetAll();
 
-        T Save<T>();
+        T Get(T entity);
 
-        void Delete<T>();
+        T Get(object id);
+
+        T Save(T entity);
+
+        int Delete(T entity);
     }
 }
